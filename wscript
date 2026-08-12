@@ -294,16 +294,8 @@ def configure(conf):
 
 	conf.env.VERSION = VERSION
 
-	try:
-		import os
 
-		devnull = open(os.devnull, 'w')
-
-		conf.env.GIT_COMMIT = subprocess.check_output(
-			["git", "rev-parse", "--verify", "--short", "HEAD"],
-			stderr=devnull).decode().strip()
-	except subprocess.CalledProcessError:
-		conf.env.GIT_COMMIT = ''
+	conf.env.GIT_COMMIT = ''
 
 	conf.define("VERSION", VERSION)
 	conf.define("_GNU_SOURCE", 1)
